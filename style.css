@@ -1,24 +1,43 @@
 body {
   background-color: black;
+  margin: 30px;
 }
-#canvas {
-  background-color: green;
-  width: 700px;
-  height: 600px;
-  float: left;
-  margin: 10px;
+
+/*TITLE*/
+
+#titleFlexBox {
+  height: 100px;
+  background-color: black;
+  margin: 0;
 }
+
+/*.titleContent{
+  text-align: center;
+}*/
+
+#title {
+  font-size: 100px;
+  color: gold;
+  font-family:'Covered By Your Grace', cursive;
+
+}
+
+
+/*SIDEBAR*/
 
 #sideBarContainer{
   width: 525px;
-  height: 300px;
-  background-color: lightblue;
+  height: 600px;
+  background-color: black;
   margin-top: 13px;
   float: right;
 }
 
-#title {
-  font-size: 75px;
+#sideBarHeader {
+  margin: 10px;
+  font-size: 20px;
+  text-align: center;
+  font-family: cursive;
 }
 
 #daisyPic {
@@ -26,14 +45,33 @@ body {
   width: 150px;
 }
 
-#titleFlexBox {
+#humanModelPic {
+  width: 60px;
   height: 100px;
-  border: 1px solid black;
-  background-color: darkgray;
-  margin: 20px;
 }
 
+
 .btn {
-  font-family:'Courgette', cursive;
+  font-family:'Covered By Your Grace', cursive;
   font-size: 30px;
+  background-color: green;
+}
+
+.card {
+  background-color: teal;
+  border: 2px solid black;
+}
+
+.templateContentDiv{
+  float:left;
+}
+
+/*CANVAS*/
+
+#canvas {
+  background-color: white;
+  width: 700px;
+  height: 600px;
+  float: left;
+  margin-top: 13px;
 }

@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace" rel="stylesheet">
 
   <title>Q1Project</title>
 </head>
@@ -25,19 +26,25 @@
 
 
   <!-- SIDEBAR -->
-  <div id="sideBarContainer" class="col-lg-5 col-md-5 col-sm-5 col-xs-12" class="card">
+  <div id="sideBarContainer" class="col-lg-5 col-md-5 col-sm-5 col-xs-5" class="card">
 
     <!-- SIDEBAR HEADER -->
-    <div class="card header">
+    <div class="card header" id='sideBarHeader'>
       Side Bar Header
     </div>
 
     <!-- BUTTONS -->
     <p>
-      <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#templates" aria-expanded="false" aria-controls="templates">
+      <button class="btn btn-info btn-lg btn-block btn-danger" type="button" data-toggle="collapse" data-target="#templates" aria-expanded="false" aria-controls="templates">
     Templates
-      </a>
-      <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#clothing" aria-expanded="false" aria-controls="clothing">
+    </button>
+    <button class="btn btn-info btn-lg btn-block btn-danger" type="button" data-toggle="collapse" data-target="#messages" aria-expanded="false" aria-controls="messages">
+      Messages
+    </button>
+    <button class="btn btn-info btn-lg btn-block btn-danger" type="button" data-toggle="collapse" data-target="#accessories" aria-expanded="false" aria-controls="accessories">
+      Accessories
+    </button>
+      <button class="btn btn-info btn-lg btn-block btn-danger" type="button" data-toggle="collapse" data-target="#clothing" aria-expanded="false" aria-controls="clothing">
     Clothing
       </button>
     </p>
@@ -45,52 +52,65 @@
     <!-- TEMPLATE IMAGE CONTENT -->
     <div class="collapse" id="templates">
       <div class="card card-body">
-        <img src="https://cdn.pixabay.com/photo/2014/11/19/17/33/oxeye-daisy-538024_960_720.jpg" id="daisyPic" class="img-responsive" alt="daisy">
-        <img src="https://cdn.pixabay.com/photo/2014/11/19/17/33/oxeye-daisy-538024_960_720.jpg" id="daisyPic" class="img-responsive" alt="daisy">
+        <div class="templateContentDiv">
+          <img src="file:///Users/jayme/Downloads/model1.png" id="humanModelPic" class="img-responsive img-fluid" alt="Human Model">
+          <img src="file:///Users/jayme/Downloads/model1.png" id="humanModelPic" class="img-responsive img-fluid" alt="Human Model">
+          <img src="file:///Users/jayme/Downloads/model1.png" id="humanModelPic" class="img-responsive img-fluid" alt="Human Model">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ACCESSORIES BUTTON CONTENT -->
+    <div class="collapse" id="accessories">
+      <div class="card card-body">
         <img src="https://cdn.pixabay.com/photo/2014/11/19/17/33/oxeye-daisy-538024_960_720.jpg" id="daisyPic" class="img-responsive" alt="daisy">
       </div>
     </div>
 
+
     <!-- CLOTHING BUTTON CONTENT -->
     <div class="collapse" id="clothing">
       <div class="card card-body">
-        <a class="btn btn-danger btn-block" data-toggle="collapse" href="#dresses" aria-expanded="false" aria-controls="dresses">
+        <a class="btn btn-dark btn-block" data-toggle="collapse" href="#dresses" aria-expanded="false" aria-controls="dresses">
           Dresses
         </a>
         <a class="btn btn-dark btn-block" data-toggle="collapse" href="#tops" aria-expanded="false" aria-controls="tops">
           Tops
         </a>
-        <a class="btn btn-info btn-block" data-toggle="collapse" href="#bottoms" aria-expanded="false" aria-controls="bottoms">
+        <a class="btn btn-dark btn-block" data-toggle="collapse" href="#bottoms" aria-expanded="false" aria-controls="bottoms">
           Bottoms
         </a>
       </div>
     </div>
 
-    <!-- TOPS IMAGE CONTENT -->
+    <!-- CLOTHING TOPS IMAGE CONTENT -->
     <div class="collapse" id="tops">
       <div class="card card-body">
         <img src="https://cdn.pixabay.com/photo/2014/11/19/17/33/oxeye-daisy-538024_960_720.jpg" id="daisyPic" class="img-responsive" alt="daisy">
       </div>
     </div>
 
-    <!-- BOTTOMS IMAGE CONTENT -->
+    <!-- CLOTHING BOTTOMS IMAGE CONTENT -->
     <div class="collapse" id="bottoms">
       <div class="card card-body">
         <img src="https://cdn.pixabay.com/photo/2014/11/19/17/33/oxeye-daisy-538024_960_720.jpg" id="daisyPic" class="img-responsive" alt="daisy">
       </div>
     </div>
 
-    <!-- DRESSES IMAGE CONTENT -->
+    <!-- CLOTHING DRESSES IMAGE CONTENT -->
     <div class="collapse" id="dresses">
       <div class="card card-body">
         <img src="https://cdn.pixabay.com/photo/2014/11/19/17/33/oxeye-daisy-538024_960_720.jpg" id="daisyPic" class="img-responsive" alt="daisy">
       </div>
     </div>
+
+
   </div>
 
 
   <!-- CANVAS -->
-  <div id="canvas" class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+  <div id="canvas" class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
     <canvas width="300" height="300"></canvas>
   </div>
 
