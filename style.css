@@ -1,0 +1,62 @@
+body {
+  background-color: black;
+}
+#canvas {
+  background-color: green;
+  width: 700px;
+  height: 500px;
+  float: left;
+  margin: 10px;
+}
+/*
+#clothingBar {
+  border: 1px solid black;
+  display: inline-block;
+  width: 300px;
+  height: 70px;
+  padding: 0;
+  margin: 0;
+}
+
+#utilityBar{
+  border: 1px solid black;
+  display: inline-block;
+  width: 500px;
+  height: 100px;
+  padding: 0;
+  margin: 0;
+}*/
+
+#sideBarContainer{
+  width: 525px;
+  height: 300px;
+  float:right;
+  background-color: lightblue;
+  margin-top: 13px;
+}
+
+/*#page-header.jumbotron{
+  width: window.InnerWidth;
+  height: 50px;
+  background-color: magenta;
+  float: left;
+}*/
+#title {
+  font-size: 75px;
+}
+
+#daisyPic {
+  height: 100px;
+  width: 150px;
+}
+
+#titleFlexBox {
+  height: 100px;
+  border: 1px solid black;
+  background-color: darkgray;
+  margin: 20px;
+}
+
+/*#shoes {
+  margin: 2px;
+}*/
