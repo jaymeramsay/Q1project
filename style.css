@@ -4,43 +4,19 @@ body {
 #canvas {
   background-color: green;
   width: 700px;
-  height: 500px;
+  height: 600px;
   float: left;
   margin: 10px;
 }
-/*
-#clothingBar {
-  border: 1px solid black;
-  display: inline-block;
-  width: 300px;
-  height: 70px;
-  padding: 0;
-  margin: 0;
-}
-
-#utilityBar{
-  border: 1px solid black;
-  display: inline-block;
-  width: 500px;
-  height: 100px;
-  padding: 0;
-  margin: 0;
-}*/
 
 #sideBarContainer{
   width: 525px;
   height: 300px;
-  float:right;
   background-color: lightblue;
   margin-top: 13px;
+  float: right;
 }
 
-/*#page-header.jumbotron{
-  width: window.InnerWidth;
-  height: 50px;
-  background-color: magenta;
-  float: left;
-}*/
 #title {
   font-size: 75px;
 }
@@ -57,6 +33,7 @@ body {
   margin: 20px;
 }
 
-/*#shoes {
-  margin: 2px;
-}*/
+.btn {
+  font-family:'Courgette', cursive;
+  font-size: 30px;
+}

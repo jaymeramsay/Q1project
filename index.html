@@ -6,6 +6,8 @@
   <script defer src="app.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 
   <title>Q1Project</title>
 </head>
@@ -20,15 +22,22 @@
     </div>
   </div>
 
+
+
   <!-- SIDEBAR -->
-  <div id="sideBarContainer" class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+  <div id="sideBarContainer" class="col-lg-5 col-md-5 col-sm-5 col-xs-12" class="card">
+
+    <!-- SIDEBAR HEADER -->
+    <div class="card header">
+      Side Bar Header
+    </div>
 
     <!-- BUTTONS -->
     <p>
-      <a class="btn btn-primary" data-toggle="collapse" href="#templates" aria-expanded="false" aria-controls="templates">
+      <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#templates" aria-expanded="false" aria-controls="templates">
     Templates
       </a>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#clothing" aria-expanded="false" aria-controls="clothing">
+      <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#clothing" aria-expanded="false" aria-controls="clothing">
     Clothing
       </button>
     </p>
@@ -41,16 +50,17 @@
         <img src="https://cdn.pixabay.com/photo/2014/11/19/17/33/oxeye-daisy-538024_960_720.jpg" id="daisyPic" class="img-responsive" alt="daisy">
       </div>
     </div>
+
     <!-- CLOTHING BUTTON CONTENT -->
     <div class="collapse" id="clothing">
       <div class="card card-body">
-        <a class="btn btn-primary" data-toggle="collapse" href="#shoes" aria-expanded="false" aria-controls="shoes">
-          Shoes
+        <a class="btn btn-danger btn-block" data-toggle="collapse" href="#dresses" aria-expanded="false" aria-controls="dresses">
+          Dresses
         </a>
-        <a class="btn btn-primary" data-toggle="collapse" href="#tops" aria-expanded="false" aria-controls="tops">
+        <a class="btn btn-dark btn-block" data-toggle="collapse" href="#tops" aria-expanded="false" aria-controls="tops">
           Tops
         </a>
-        <a class="btn btn-primary" data-toggle="collapse" href="#bottoms" aria-expanded="false" aria-controls="bottoms">
+        <a class="btn btn-info btn-block" data-toggle="collapse" href="#bottoms" aria-expanded="false" aria-controls="bottoms">
           Bottoms
         </a>
       </div>
@@ -66,12 +76,12 @@
     <!-- BOTTOMS IMAGE CONTENT -->
     <div class="collapse" id="bottoms">
       <div class="card card-body">
-          <img src="https://cdn.pixabay.com/photo/2014/11/19/17/33/oxeye-daisy-538024_960_720.jpg" id="daisyPic" class="img-responsive" alt="daisy">
+        <img src="https://cdn.pixabay.com/photo/2014/11/19/17/33/oxeye-daisy-538024_960_720.jpg" id="daisyPic" class="img-responsive" alt="daisy">
       </div>
     </div>
 
-    <!-- SHOE IMAGE CONTENT -->
-    <div class="collapse" id="shoes">
+    <!-- DRESSES IMAGE CONTENT -->
+    <div class="collapse" id="dresses">
       <div class="card card-body">
         <img src="https://cdn.pixabay.com/photo/2014/11/19/17/33/oxeye-daisy-538024_960_720.jpg" id="daisyPic" class="img-responsive" alt="daisy">
       </div>
