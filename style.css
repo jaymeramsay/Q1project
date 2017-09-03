@@ -45,7 +45,7 @@ body {
   width: 150px;
 }
 
-#humanModelPic {
+#humanImage {
   width: 60px;
   height: 100px;
 }
@@ -55,6 +55,7 @@ body {
   font-family:'Covered By Your Grace', cursive;
   font-size: 30px;
   background-color: green;
+  border-radius: 35px;
 }
 
 .card {
@@ -70,8 +71,8 @@ body {
 
 #canvas {
   background-color: white;
-  width: 700px;
-  height: 600px;
+  width: 570px;
+  height: 700px;
   float: left;
   margin-top: 13px;
 }
