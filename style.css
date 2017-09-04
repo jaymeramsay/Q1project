@@ -11,10 +11,6 @@ body {
   margin: 0;
 }
 
-/*.titleContent{
-  text-align: center;
-}*/
-
 #title {
   font-size: 100px;
   color: gold;
@@ -45,9 +41,27 @@ body {
   width: 150px;
 }
 
-#humanImage {
-  width: 60px;
-  height: 100px;
+
+#templates .card{
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#accessories .card{
+  display: inline-block;
+}
+
+#dresses .card{
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#tops .card{
+  display: inline-block;
+}
+
+#bottoms .card {
+  display: inline-block;
 }
 
 
@@ -63,16 +77,20 @@ body {
   border: 2px solid black;
 }
 
-.templateContentDiv{
-  float:left;
+.imageSelector {
+  width: 100px;
+  height: 130px;
+  margin: 2px;
 }
+
 
 /*CANVAS*/
 
 #canvas {
   background-color: white;
-  width: 700px;
-  height: 700px;
+  /*width: 700px;
+  height: 700px;*/
   float: left;
   margin-top: 13px;
+  padding-left: 10px;
 }
