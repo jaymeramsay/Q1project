@@ -1,9 +1,3 @@
-//Canvas creation
-// let canvas = document.querySelector('canvas');
-// let context = canvas.getContext('2d'); //canvas object uses method getContext to access to a lot of drawing info
-
-
-
 // SETTING UP KONVA LIBRARY FOR CANVAS
 //setting the Stage
 let stage = new Konva.Stage({
@@ -12,8 +6,12 @@ let stage = new Konva.Stage({
   height: 700
 });
 
-let layer = new Konva.Layer();
-stage.add(layer);
+let backgroundLayer = new Konva.Layer();
+stage.add(backgroundLayer);
+let clothingLayer = new Konva.Layer();
+stage.add(clothingLayer);
+let accessoriesLayer = new Konva.Layer();
+stage.add(accessoriesLayer);
 
 
 
@@ -24,7 +22,6 @@ let sectionImageObj = {
     'http://fillmurray.com/150/155',
     'http://fillmurray.com/150/160',
     'http://fillmurray.com/150/200',
-    'http://fillmurray.com/150/100',
   ],
   accessories: [
     'http://fillmurray.com/150/120',
@@ -33,10 +30,10 @@ let sectionImageObj = {
     'http://fillmurray.com/150/150',
   ],
   dresses: [
+    'assets/blueDressPic.png',
     'http://fillmurray.com/150/140',
     'http://fillmurray.com/150/210',
     'http://fillmurray.com/150/180',
-    'http://fillmurray.com/150/190',
   ],
   tops: [
     'http://fillmurray.com/150/151',
@@ -55,15 +52,29 @@ let sectionImageObj = {
 
 
 // put a click event on image buttons in sidebar
-function imageClick(element) {
+function imageClick(element, targetLayer) {
+
+
   $(element).on('click', function (ev) {
     let imgButton = ev.target;
-    imageToCanvas(imgButton.src); //calling another function
+    // if (imgButton === $('#clothing')) {
+    //   secondLayer.add(imgButton);
+    //   stage.add(secondLayer);
+    // }
+    // if (imgButton === $('#accessories')) {
+    //   thirdLayer.add(imgButton);
+    //   stage.add(thirdLayer);
+    // }
+    // else {
+    //   backgroundLayer.add(imgButton);
+    //   stage.add(backgroundLayer);
+    // }
+    imageToCanvas(imgButton.src, targetLayer); //calling another function
   });
 }
 
 //accessing images sources in function
-function imageToCanvas(source) {
+function imageToCanvas(source, targetLayer) {
   let imageObj = new Image();
   console.log('this is my source' + source);
 
@@ -76,12 +87,14 @@ function imageToCanvas(source) {
       height: 600,
       draggable: true
     });
-    layer.add(image);
-    stage.add(layer);
+
+    targetLayer.add(image);
+    targetLayer.draw();
+    // stage.add(targetLayer);
 
     image.on('click', function (ev) {
       ev.target.remove();
-      layer.draw();
+      targetLayer.draw();
     });
   };
   imageObj.src = source;
@@ -101,7 +114,15 @@ Object.keys(sectionImageObj).forEach(function (section) {
     $(imageElement).addClass("imageSelector");
     // attach image to section div
     imageSelector.appendChild(imageElement);
-    imageClick(imageElement); //here, I'm invoking my imageClick function
+    let targetLayer = clothingLayer;
+    if (section === "templates") {
+      targetLayer = backgroundLayer;
+    }
+    else if (section === "accessories") {
+      targetLayer = accessoriesLayer;
+    }
+
+    imageClick(imageElement, targetLayer); //here, I'm invoking my imageClick function
   });
 });
 
