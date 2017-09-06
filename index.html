@@ -6,9 +6,13 @@
   <script defer src="app.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css">
+
+
+  </script>
   <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <title>Q1Project</title>
 </head>
@@ -26,85 +30,92 @@
 
 
   <!-- SIDEBAR -->
-  <div id="sideBarContainer" class="col-lg-5 col-md-5 col-sm-5 col-xs-5" class="card">
+  <div id="sideBarContainer" class="col-lg-5 col-md-5 col-sm-5 col-xs-5" class="card" role="tablist">
 
-    <!-- SIDEBAR HEADER -->
-    <div class="card header" id='sideBarHeader'>
-      Side Bar Header
-    </div>
 
-    <!-- BUTTONS -->
+    <!-- TEMPLATE BUTTON -->
     <p>
-      <button class="btn btn-info btn-lg btn-block btn-danger" type="button" data-toggle="collapse" data-target="#templates" aria-expanded="false" aria-controls="templates">
+      <a class="btn btn-lg btn-block btn-danger" role="tab" data-toggle="collapse" href="#templates" aria-expanded="false" aria-controls="templates" data-parent="#sideBarContainer">
     Templates
-    </button>
-      <button class="btn btn-info btn-lg btn-block btn-danger" type="button" data-toggle="collapse" data-target="#messages" aria-expanded="false" aria-controls="messages">
-      Messages
-    </button>
-      <button class="btn btn-info btn-lg btn-block btn-danger" type="button" data-toggle="collapse" data-target="#accessories" aria-expanded="false" aria-controls="accessories">
-      Accessories
-    </button>
-      <button class="btn btn-info btn-lg btn-block btn-danger" type="button" data-toggle="collapse" data-target="#clothing" aria-expanded="false" aria-controls="clothing">
+      </a>
+      <!-- TEMPLATE IMAGE CONTENT -->
+      <div class="collapse" id="templates">
+        <div class="card card-body" role="tabpanel" data-parent="sideBarContainer">
+        </div>
+      </div>
+
+
+
+      <!-- CLOTHING BUTTON -->
+      <a class="btn btn-lg btn-block btn-danger" role="tab" data-toggle="collapse" href="#clothing" aria-expanded="false" aria-controls="clothing" data-parent="#sideBarContainer">
     Clothing
-      </button>
+      </a>
+      <!-- DRESSES BUTTON -->
+      <div class="collapse" id="clothing">
+        <div class="card card-body" role="tab" data-parent="sideBarContainer">
+          <a class="btn btn-dark btn-block" data-toggle="collapse" role="tab" href="#dresses" aria-expanded="false" aria-controls="dresses" data-parent="#sideBarContainer">
+        Dresses
+          </a>
+          <!-- CLOTHING DRESSES IMAGE CONTENT -->
+          <div class="collapse" id="dresses">
+            <div class="card card-body" role="tabpanel" data-parent="sideBarContainer">
+            </div>
+          </div>
+
+          <!-- TOPS BUTTON -->
+          <a class="btn btn-dark btn-block" data-toggle="collapse" role="tab" href="#tops" aria-expanded="false" aria-controls="tops" data-parent="#sideBarContainer">
+        Tops
+      </a>
+          <!-- CLOTHING TOPS IMAGE CONTENT -->
+          <div class="collapse" id="tops">
+            <div class="card card-body" role="tabpanel" data-parent="sideBarContainer">
+            </div>
+          </div>
+
+          <!-- BOTTOMS BUTTON -->
+          <a class="btn btn-dark btn-block" data-toggle="collapse" role="tab" href="#bottoms" aria-expanded="false" aria-controls="bottoms" data-parent="#sideBarContainer">
+        Bottoms
+      </a>
+          <!-- CLOTHING BOTTOMS IMAGE CONTENT -->
+          <div class="collapse" id="bottoms">
+            <div class="card card-body" role="tabpanel" data-parent="sideBarContainer">
+            </div>
+          </div>
+        </div>
+      </div>
     </p>
 
-    <!-- TEMPLATE IMAGE CONTENT -->
-    <div class="collapse" id="templates">
-      <div class="card card-body">
-        <!-- <div class="templateContentDiv">
-          <img src="assets/humanModelPic.png" id="humanImage" class="img-responsive img-fluid" alt="Human Model">
-        </div> -->
-      </div>
-    </div>
 
 
-    <!-- ACCESSORIES BUTTON CONTENT -->
-    <!-- "#accessories .card" selectpr-->
+    <!-- ACCESSORIES BUTTON -->
+    <a class="btn btn-lg btn-block btn-danger" role="tab" data-toggle="collapse" href="#accessories" aria-expanded="false" aria-controls="accessories" data-parent="#sideBarContainer">
+      Accessories
+    </a>
+    <!-- ACCESSORIES IMAGE CONTENT -->
     <div class="collapse" id="accessories">
-      <div class="card card-body">
-
+      <div class="card card-body" role="tabpanel" data-parent="sideBarContainer">
       </div>
     </div>
 
 
-    <!-- CLOTHING BUTTON CONTENT -->
-    <div class="collapse" id="clothing">
-      <div class="card card-body">
-        <a class="btn btn-dark btn-block" data-toggle="collapse" href="#dresses" aria-expanded="false" aria-controls="dresses">
-          Dresses
-        </a>
-        <a class="btn btn-dark btn-block" data-toggle="collapse" href="#tops" aria-expanded="false" aria-controls="tops">
-          Tops
-        </a>
-        <a class="btn btn-dark btn-block" data-toggle="collapse" href="#bottoms" aria-expanded="false" aria-controls="bottoms">
-          Bottoms
-        </a>
-      </div>
-    </div>
 
-    <!-- CLOTHING TOPS IMAGE CONTENT -->
-    <div class="collapse" id="tops">
-      <div class="card card-body">
+    <!-- MESSAGES BUTTON -->
+    <a class="btn btn-lg btn-block btn-danger" id="messageButton" role="tab" data-toggle="collapse" href="#messages" aria-expanded="false" aria-controls="messages" data-parent="#sideBarContainer">
+      Messages
+    </a>
 
-      </div>
-    </div>
 
-    <!-- CLOTHING BOTTOMS IMAGE CONTENT -->
-    <div class="collapse" id="bottoms">
-      <div class="card card-body">
-      </div>
-    </div>
 
-    <!-- CLOTHING DRESSES IMAGE CONTENT -->
-    <div class="collapse" id="dresses">
-      <div class="card card-body">
-      </div>
-    </div>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="navBar">
+    </nav>
 
+    <nav class="navbar navbar-expand-lg navbar-light" id="navBar">
+      <button class="btn" type="button" id="resizeButton"><i class="material-icons" id="photoIcon">photo_size_select_large</i></button>
+    </nav>
 
   </div>
-  </div>
+  <!-- </div> -->
 
   <!-- CANVAS -->
   <div id="canvas" class="col-lg-7 col-md-7 col-sm-7 col-xs-7"></div>

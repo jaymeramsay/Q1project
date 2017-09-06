@@ -44,16 +44,17 @@ body {
 
 #templates .card{
   display: inline-block;
-  margin-left: 5px;
+  /*margin-left: 5px;*/
 }
 
 #accessories .card{
   display: inline-block;
+
 }
 
 #dresses .card{
   display: inline-block;
-  margin-left: 5px;
+  /*margin-left: 5px;*/
 }
 
 #tops .card{
@@ -64,12 +65,16 @@ body {
   display: inline-block;
 }
 
+#messageButton {
+  margin-top: 15px;
+}
 
 .btn {
   font-family:'Covered By Your Grace', cursive;
   font-size: 30px;
   background-color: green;
   border-radius: 35px;
+  margin: 0 auto;
 }
 
 .card {
@@ -83,6 +88,37 @@ body {
   margin: 2px;
 }
 
+.material-icons {
+  margin: 5px;
+}
+
+.navbar {
+  background-color: gold;
+  /*width: 400px;
+  height: 75px;*/
+  margin: 10px;
+}
+
+.square {
+  display: inline-block;
+  border: 1px solid black;
+  width: 20px;
+  height: 20px;
+  /*float:left;*/
+}
+
+#photoIcon {
+  width: 24px;
+  height:24px;
+}
+
+#resizeButton {
+background-color: gold;
+margin:0;
+padding:0;
+/*width: 20px;
+height: 20px;*/
+}
 
 /*CANVAS*/
 
