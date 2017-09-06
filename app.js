@@ -13,6 +13,7 @@ stage.add(clothingLayer);
 let accessoriesLayer = new Konva.Layer();
 stage.add(accessoriesLayer);
 
+//Background Colors
 const colors = [
   '#ad2105',
   '#ff0000',
@@ -46,7 +47,8 @@ const colors = [
   '#030303',
 ];
 
-
+// Global Variables
+let lastAddedGroup;
 
 
 // IMAGE OBJECT
@@ -99,28 +101,29 @@ function imageToCanvas(source, targetLayer) {
 
   imageObj.onload = function () {
     let image = new Konva.Image({
-      x: 175,
-      y: 50,
+      // x: 175,
+      // y: 50,
       image: imageObj,
-      width: 400,
-      height: 600,
-      draggable: true
-    });
+      // width: 400,
+      // height: 600,
+      // draggable: true
 
+    });
+    //create a konva group and add images to it as well as layers
     let myGroup = new Konva.Group({
-      x: 0,
-      y: 0,
+      x: image.x(),
+      y: image.y(),
+      width: image.width(),
+      height: image.height(),
       draggable: true
     });
 
+    lastAddedGroup = myGroup;
     myGroup.add(image);
     targetLayer.add(myGroup);
     targetLayer.draw();
-    // addAnchor(myGroup, 0, 0, "topLeft");
-    // addAnchor(myGroup, 200, 0, "topRight");
-    // addAnchor(myGroup, 200, 138, "bottomLeft");
-    // addAnchor(myGroup, 0, 138, "bottomRight");
 
+    //remove group and image from canvas with a click event
     myGroup.on('click', function (ev) {
       ev.target.remove();
       targetLayer.draw();
@@ -130,7 +133,7 @@ function imageToCanvas(source, targetLayer) {
 }
 
 
-//  SWITCH CANVAS COLORS
+//  SWITCH CANVAS COLORS FUNCTION
 function squareClicker(square) {
   $('.square').on('click', function (ev) {
     $("#canvas").css('background-color', ev.target.style.backgroundColor);
@@ -139,119 +142,105 @@ function squareClicker(square) {
 
 
 
-
-//RESize BUTTON SEQUENCE OF FUNCTIONS
-
-//set up active anchors for the photos
-// function update(activeAnchor) {
-//   // console.log(activeAnchor);
-//   let group = activeAnchor.getParent();
-//   let topLeft = group.get('.topLeft')[0];
-//   let topRight = group.get('.topRight')[0];
-//   let bottomRight = group.get('.bottomRight')[0];
-//   let bottomLeft = group.get('.bottomLeft')[0];
-//   let image = group.get('Image')[0];
-//   let anchorX = activeAnchor.getX();
-//   let anchorY = activeAnchor.getY();
-//   // update anchor positions
-//   switch (activeAnchor.getName()) {
-//   case 'topLeft':
-//     topRight.setY(anchorY);
-//     bottomLeft.setX(anchorX);
-//     break;
-//   case 'topRight':
-//     topLeft.setY(anchorY);
-//     bottomRight.setX(anchorX);
-//     break;
-//   case 'bottomRight':
-//     bottomLeft.setY(anchorY);
-//     topRight.setX(anchorX);
-//     break;
-//   case 'bottomLeft':
-//     bottomRight.setY(anchorY);
-//     topLeft.setX(anchorX);
-//     break;
-//   }
-//   image.position(topLeft.position());
 //
-//   let width = topRight.getX() - topLeft.getX();
-//   let height = bottomLeft.getY() - topLeft.getY();
-//   if (width && height) {
-//     image.width(width);
-//     image.height(height);
-//   }
-// }
+// RESize BUTTON SEQUENCE OF FUNCTIONS
 //
-//
-// //create and add resize anchors
-// function addAnchor(group, x, y, name) {
-//   let stage = group.getStage();
-//   let targetLayer = group.getLayer();
-//   let anchor = new Konva.Circle({
-//     x: x,
-//     y: y,
-//     stroke: '#666',
-//     fill: '#ddd',
-//     strokeWidth: 2,
-//     radius: 8,
-//     name: name,
-//     draggable: true,
-//     dragOnTop: false
-//   });
-//   anchor.on('dragmove', function () {
-//     update(this);
-//     targetLayer.draw();
-//   });
-//   anchor.on('mousedown touchstart', function () {
-//     group.setDraggable(false);
-//     this.moveToTop();
-//   });
-//   anchor.on('dragend', function () {
-//     group.setDraggable(true);
-//     targetLayer.draw();
-//   });
-//   // add hover styling
-//   anchor.on('mouseover', function () {
-//     let targetLayer = this.getLayer();
-//     document.body.style.cursor = 'pointer';
-//     this.setStrokeWidth(4);
-//     targetLayer.draw();
-//   });
-//   anchor.on('mouseout', function () {
-//     let targetLayer = this.getLayer();
-//     document.body.style.cursor = 'default';
-//     this.setStrokeWidth(2);
-//     targetLayer.draw();
-//   });
-//   group.add(anchor);
-// }
-//
-// let targetLayer = new Konva.Layer();
-// stage.add(targetLayer);
+// set up active anchors for the photos
+function update(activeAnchor) {
+  // console.log(activeAnchor);
+  let group = activeAnchor.getParent();
+  let topLeft = group.get('.topLeft')[0];
+  let topRight = group.get('.topRight')[0];
+  let bottomRight = group.get('.bottomRight')[0];
+  let bottomLeft = group.get('.bottomLeft')[0];
+  let image = group.get('Image')[0];
+  let anchorX = activeAnchor.getX();
+  let anchorY = activeAnchor.getY();
+  // update anchor positions
+  switch (activeAnchor.getName()) {
+  case 'topLeft':
+    topRight.setY(anchorY);
+    bottomLeft.setX(anchorX);
+    break;
+  case 'topRight':
+    topLeft.setY(anchorY);
+    bottomRight.setX(anchorX);
+    break;
+  case 'bottomRight':
+    bottomLeft.setY(anchorY);
+    topRight.setX(anchorX);
+    break;
+  case 'bottomLeft':
+    bottomRight.setY(anchorY);
+    topLeft.setX(anchorX);
+    break;
+  }
+  image.position(topLeft.position());
 
-
-function resizeClick(button) {
-  $('#resizeButton').on('click', function (ev) {
-    console.log('IM CLICKING THE RESIZE BUTTON');
-  });
-  resizeClick();
+  let width = topRight.getX() - topLeft.getX();
+  let height = bottomLeft.getY() - topLeft.getY();
+  if (width && height) {
+    image.width(width);
+    image.height(height);
+  }
 }
-// function resizeImage(img, targetLayer) {
-//   let myGroup = new Konva.Group({
-//     x: 0,
-//     y: 0,
-//     draggable: true
-//   });
-//
-//   myGroup.add(img);
-//   targetLayer.add(myGroup);
-//   // targetLayer.add(image);
-//   targetLayer.draw();
-//   addAnchor(myGroup, 0, 0, "topLeft");
-//   addAnchor(myGroup, 200, 0, "topRight");
-//   addAnchor(myGroup, 200, 138, "bottomLeft");
-//   addAnchor(myGroup, 0, 138, "bottomRight");
-//   stage.add(targetLayer);
+
+
+//create and add resize anchors
+function addAnchor(group, x, y, name) {
+  let stage = group.getStage();
+  let targetLayer = group.getLayer();
+  let anchor = new Konva.Circle({
+    x: x,
+    y: y,
+    stroke: '#666',
+    fill: '#ddd',
+    strokeWidth: 2,
+    radius: 8,
+    name: name,
+    draggable: true,
+    dragOnTop: false
+  });
+  anchor.on('dragmove', function () {
+    update(this);
+    targetLayer.draw();
+  });
+  anchor.on('mousedown touchstart', function () {
+    group.setDraggable(false);
+    this.moveToTop();
+  });
+  anchor.on('dragend', function () {
+    group.setDraggable(true);
+    targetLayer.draw();
+  });
+  // add hover styling
+  anchor.on('mouseover', function () {
+    let targetLayer = this.getLayer();
+    document.body.style.cursor = 'pointer';
+    this.setStrokeWidth(4);
+    targetLayer.draw();
+  });
+  anchor.on('mouseout', function () {
+    let targetLayer = this.getLayer();
+    document.body.style.cursor = 'default';
+    this.setStrokeWidth(2);
+    targetLayer.draw();
+  });
+  group.add(anchor);
+}
+
+let targetLayer = new Konva.Layer();
+stage.add(targetLayer);
+
+
+$('#resizeButton').on('click', function (ev) {
+  console.log('IM CLICKING THE RESIZE BUTTON');
+  addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.y(), "topLeft");
+  addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.y(), "topRight");
+  addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomRight");
+  addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomLeft");
+  lastAddedGroup.draw();
+});
 
 
 //Create a nested forEach to generate img tags for imgObj[keys]
