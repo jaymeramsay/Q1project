@@ -177,7 +177,7 @@ function addImageToCanvas(source, targetLayer) {
 
     // Remove image group from canvas with a click event
     myGroup.on('click', function (event) {
-      lastAddedGroup.remove(); // TBD: This removes the group, anchors and image!
+      event.target.remove(); // TBD: This removes the group, anchors and image!
       //      Fix to only remove anchors
       targetLayer.draw();
     });
