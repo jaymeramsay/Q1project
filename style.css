@@ -112,20 +112,30 @@ body {
   height:24px;
 }
 
-#resizeButton {
-background-color: gold;
-margin:0;
-padding:0;
-/*width: 20px;
-height: 20px;*/
+#buttonBar {
+  margin-left: 100px;
 }
 
+#resizeButton {
+  border-radius: 0;
+  background-color: deeppink;
+}
+
+#resetButton {
+  border-radius: 0;
+  background-color: teal;
+}
+
+#rotateButton {
+  border-radius: 0;
+  background-color: deeppink;
+}
 /*CANVAS*/
 
 #canvas {
   background-color: white;
-  /*width: 700px;
-  height: 700px;*/
+  width: 700px;
+  height: 700px;
   float: left;
   margin-top: 13px;
   padding-left: 10px;

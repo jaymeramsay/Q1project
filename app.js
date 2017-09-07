@@ -6,12 +6,17 @@ let stage = new Konva.Stage({
   height: 700
 });
 
-let backgroundLayer = new Konva.Layer();
-stage.add(backgroundLayer);
-let clothingLayer = new Konva.Layer();
-stage.add(clothingLayer);
-let accessoriesLayer = new Konva.Layer();
-stage.add(accessoriesLayer);
+
+let layers = [
+  new Konva.Layer(),
+  new Konva.Layer(),
+  new Konva.Layer(),
+  new Konva.Layer(),
+];
+
+layers.forEach(function (layer) {
+  stage.add(layer);
+});
 
 //Background Colors
 const colors = [
@@ -87,6 +92,9 @@ let sectionImageObj = {
 
 
 
+
+
+
 // put a click event on image buttons in sidebar
 function imageClick(element, targetLayer) {
   $(element).on('click', function (ev) {
@@ -101,14 +109,9 @@ function imageToCanvas(source, targetLayer) {
 
   imageObj.onload = function () {
     let image = new Konva.Image({
-      // x: 175,
-      // y: 50,
       image: imageObj,
-      // width: 400,
-      // height: 600,
-      // draggable: true
-
     });
+
     //create a konva group and add images to it as well as layers
     let myGroup = new Konva.Group({
       x: image.x(),
@@ -120,6 +123,8 @@ function imageToCanvas(source, targetLayer) {
 
     lastAddedGroup = myGroup;
     myGroup.add(image);
+    console.log(targetLayer);
+    console.log(typeof targetLayer);
     targetLayer.add(myGroup);
     targetLayer.draw();
 
@@ -147,7 +152,6 @@ function squareClicker(square) {
 //
 // set up active anchors for the photos
 function update(activeAnchor) {
-  // console.log(activeAnchor);
   let group = activeAnchor.getParent();
   let topLeft = group.get('.topLeft')[0];
   let topRight = group.get('.topRight')[0];
@@ -233,13 +237,32 @@ let targetLayer = new Konva.Layer();
 stage.add(targetLayer);
 
 
+//RESIZE BUTTON CLICK EVENT
+let onClick = false;
 $('#resizeButton').on('click', function (ev) {
+  onclick = true;
   console.log('IM CLICKING THE RESIZE BUTTON');
   addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.y(), "topLeft");
   addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.y(), "topRight");
   addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomRight");
   addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomLeft");
   lastAddedGroup.draw();
+});
+
+// if (!onClick) {
+//   addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.y(), "topLeft").remove();
+//   addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.y(), "topRight").remove();
+//   addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomRight").remove();
+//   addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomLeft").remove();
+//   lastAddedGroup.draw();
+// }
+
+$('#resetButton').on('click', function (ev) {
+  stage.clear();
+  layers.forEach(function (layer) {
+    layer.removeChildren();
+  });
+  targetLayer.draw();
 });
 
 
@@ -254,12 +277,12 @@ Object.keys(sectionImageObj).forEach(function (section) {
     $(imageElement).addClass("imageSelector");
     // attach image to section div
     imageSelector.appendChild(imageElement);
-    let targetLayer = clothingLayer;
+    let targetLayer = layers[1];
     if (section === "templates") {
-      targetLayer = backgroundLayer;
+      targetLayer = layers[0];
     }
     else if (section === "accessories") {
-      targetLayer = accessoriesLayer;
+      targetLayer = layers[2];
     }
     imageClick(imageElement, targetLayer); //here, I'm invoking my imageClick function
   });
