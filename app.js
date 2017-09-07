@@ -2,10 +2,9 @@
 //setting the Stage
 let stage = new Konva.Stage({
   container: 'canvas',
-  width: 700,
-  height: 700
+  width: 1400,
+  height: 500
 });
-
 
 let layers = [
   new Konva.Layer(),
@@ -14,6 +13,7 @@ let layers = [
   new Konva.Layer(),
 ];
 
+// stage.width(300); set to a page resize event to be fancy-ass.
 layers.forEach(function (layer) {
   stage.add(layer);
 });
@@ -54,7 +54,7 @@ const colors = [
 
 // Global Variables
 let lastAddedGroup;
-
+let anchorExists = true;
 
 // IMAGE OBJECT
 let sectionImageObj = {
@@ -62,7 +62,7 @@ let sectionImageObj = {
     'assets/humanModelPic.png',
     'assets/robot.png',
     'assets/chicken.png',
-    'http://fillmurray.com/150/192',
+    'assets/zubairowl.png',
   ],
   accessories: [
     'assets/bowtie.png',
@@ -89,11 +89,6 @@ let sectionImageObj = {
     'http://fillmurray.com/150/109',
   ]
 };
-
-
-
-
-
 
 // put a click event on image buttons in sidebar
 function imageClick(element, targetLayer) {
@@ -130,13 +125,13 @@ function imageToCanvas(source, targetLayer) {
 
     //remove group and image from canvas with a click event
     myGroup.on('click', function (ev) {
-      ev.target.remove();
+      // ev.target.remove();
+      lastAddedGroup.remove();
       targetLayer.draw();
     });
   };
   imageObj.src = source;
 }
-
 
 //  SWITCH CANVAS COLORS FUNCTION
 function squareClicker(square) {
@@ -145,9 +140,6 @@ function squareClicker(square) {
   });
 }
 
-
-
-//
 // RESize BUTTON SEQUENCE OF FUNCTIONS
 //
 // set up active anchors for the photos
@@ -188,7 +180,6 @@ function update(activeAnchor) {
     image.height(height);
   }
 }
-
 
 //create and add resize anchors
 function addAnchor(group, x, y, name) {
@@ -231,16 +222,14 @@ function addAnchor(group, x, y, name) {
     targetLayer.draw();
   });
   group.add(anchor);
+  return anchor;
 }
 
-let targetLayer = new Konva.Layer();
-stage.add(targetLayer);
-
+// let targetLayer = new Konva.Layer();
+// stage.add(targetLayer);
 
 //RESIZE BUTTON CLICK EVENT
-let onClick = false;
 $('#resizeButton').on('click', function (ev) {
-  onclick = true;
   console.log('IM CLICKING THE RESIZE BUTTON');
   addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.y(), "topLeft");
   addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.y(), "topRight");
@@ -249,22 +238,15 @@ $('#resizeButton').on('click', function (ev) {
   lastAddedGroup.draw();
 });
 
-// if (!onClick) {
-//   addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.y(), "topLeft").remove();
-//   addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.y(), "topRight").remove();
-//   addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomRight").remove();
-//   addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomLeft").remove();
-//   lastAddedGroup.draw();
-// }
-
+//RESET BUTTON CONSTRUCTION
 $('#resetButton').on('click', function (ev) {
   stage.clear();
   layers.forEach(function (layer) {
     layer.removeChildren();
   });
+  // stage.style.backgroundColor = "white";
   targetLayer.draw();
 });
-
 
 //Create a nested forEach to generate img tags for imgObj[keys]
 Object.keys(sectionImageObj).forEach(function (section) {
@@ -287,8 +269,6 @@ Object.keys(sectionImageObj).forEach(function (section) {
     imageClick(imageElement, targetLayer); //here, I'm invoking my imageClick function
   });
 });
-
-
 
 //generate color palette
 let navBar = document.getElementById('navBar');

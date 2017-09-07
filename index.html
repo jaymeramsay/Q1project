@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css">
 
-
-  </script>
   <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace" rel="stylesheet">
@@ -30,32 +28,38 @@
 
 
   <!-- SIDEBAR -->
-  <div id="sideBarContainer" class="col-lg-5 col-md-5 col-sm-5 col-xs-5" class="card">
+  <nav class="navbar navbar-expand-lg navbar-light" id="navBar">
+    <div class="btn-group" role="group" aria-label="button bar" id="buttonBar">
+      <button type="button" class="btn btn-danger" id="resizeButton"><i class="material-icons" id="photoIcon">photo_size_select_large</i></button>
+      <button type="button" class="btn btn-danger" id="rotateButton"><i class="material-icons">rotate_left</i></button>
+      <input class="btn btn-danger" type="reset" id="resetButton" value="Reset">
+    </div>
+  </nav>
+
+
+  <!-- <div id="sideBarContainer" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" class="card"> -->
 
 
     <!-- TEMPLATE BUTTON -->
-    <p>
-      <button class="btn btn-lg btn-block btn-danger" data-toggle="collapse" data-target="#templates" aria-expanded="false" aria-controls="templates" data-parent="#sideBarContainer">
+    <div class="btn-group" role="group">
+      <button class="btn btn-lg" data-toggle="collapse" data-target="#templates" aria-expanded="false" aria-controls="templates">
     Templates
-  </button>
-      <!-- TEMPLATE IMAGE CONTENT -->
-      <div class="collapse" id="templates">
-        <div class="card card-body">
-        </div>
-      </div>
+      </button>
 
 
 
-      <!-- CLOTHING BUTTON -->
-      <button class="btn btn-lg btn-block btn-danger" data-toggle="collapse" data-target="#clothing" aria-expanded="false" aria-controls="clothing" data-parent="#sideBarContainer">
+      <!-- CLOTHING BUTTON  -->
+      <button class="btn btn-lg btn-danger" data-toggle="collapse" data-target="#clothing" aria-expanded="false" aria-controls="clothing">
     Clothing
   </button>
       <!-- DRESSES BUTTON -->
-      <div class="collapse" id="clothing">
-        <div class="card card-body" data-parent="sideBarContainer">
-          <button class="btn btn-dark btn-block" data-toggle="collapse" data-target="#dresses" aria-expanded="false" aria-controls="dresses" data-parent="#sideBarContainer">
+       <div class="collapse" id="clothing">
+        <div class="card card-body">
+          <button class="btn btn-lg" data-toggle="collapse" data-target="#dresses" aria-expanded="false" aria-controls="dresses">
         Dresses
       </button>
+
+
           <!-- CLOTHING DRESSES IMAGE CONTENT -->
           <div class="collapse" id="dresses">
             <div class="card card-body">
@@ -63,7 +67,7 @@
           </div>
 
           <!-- TOPS BUTTON -->
-          <button class="btn btn-dark btn-block" data-toggle="collapse" data-target="#tops" aria-expanded="false" aria-controls="tops" data-parent="#sideBarContainer">
+          <button class="btn btn-lg" data-toggle="collapse" data-target="#tops" aria-expanded="false" aria-controls="tops">
         Tops
       </button>
           <!-- CLOTHING TOPS IMAGE CONTENT -->
@@ -73,7 +77,7 @@
           </div>
 
           <!-- BOTTOMS BUTTON -->
-          <button class="btn btn-dark btn-block" data-toggle="collapse" data-target="#bottoms" aria-expanded="false" aria-controls="bottoms" data-parent="#sideBarContainer">
+          <button class="btn btn-lg" data-toggle="collapse" data-target="#bottoms" aria-expanded="false" aria-controls="bottoms">
         Bottoms
       </button>
           <!-- CLOTHING BOTTOMS IMAGE CONTENT -->
@@ -82,46 +86,38 @@
             </div>
           </div>
         </div>
-      </div>
-    </p>
+      </div>//ending div for the sideBarContainer
+
+
 
 
 
     <!-- ACCESSORIES BUTTON -->
-    <button class="btn btn-lg btn-block btn-danger" data-toggle="collapse" data-target="#accessories" aria-expanded="false" aria-controls="accessories" data-parent="#sideBarContainer">
+    <button class="btn btn-lg" data-toggle="collapse" data-target="#accessories" aria-expanded="false" aria-controls="accessories">
       Accessories
     </button>
-    <!-- ACCESSORIES IMAGE CONTENT -->
-    <div class="collapse" id="accessories">
-      <div class="card card-body">
-      </div>
-    </div>
 
 
 
     <!-- MESSAGES BUTTON -->
-    <button class="btn btn-lg btn-block btn-danger" id="messageButton" data-toggle="collapse" data-target="#messages" aria-expanded="false" aria-controls="messages" data-parent="#sideBarContainer">
+    <button class="btn btn-lg" id="messageButton" data-toggle="collapse" data-target="#messages" aria-expanded="false" aria-controls="messages">
       Messages
     </button>
-
-
-
-    <!-- NAVIGATION BAR -->
-    <nav class="navbar navbar-expand-lg navbar-light" id="navBar">
-    </nav>
-
-    <div class="btn-group" role="group" aria-label="button bar" id="buttonBar">
-      <button type="button" class="btn btn-danger" id="resizeButton"><i class="material-icons" id="photoIcon">photo_size_select_large</i></button>
-      <button type="button" class="btn btn-danger" id="rotateButton"><i class="material-icons">rotate_left</i></button>
-      <input class="btn btn-danger" type="reset" id="resetButton" value="Reset">
-    </div>
-
-
   </div>
-  <!-- </div> -->
+
+  <!-- TEMPLATE IMAGE CONTENT -->
+  <div class="collapse" id="templates">
+    <div class="card card-body">
+    </div>
+  </div>
+  <!-- ACCESSORIES IMAGE CONTENT -->
+  <div class="collapse" id="accessories">
+    <div class="card card-body">
+    </div>
+  </div>
 
   <!-- CANVAS -->
-  <div id="canvas" class="col-lg-7 col-md-7 col-sm-7 col-xs-7"></div>
+  <div id="canvas" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
 
 
   <!-- LIBRARIES -->
