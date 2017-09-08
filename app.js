@@ -38,9 +38,8 @@ let sectionImages = {
 const stage = new Konva.Stage({
   container: 'canvas',
   width: 700,
-  height: 700,
+  height: 500
 });
-
 
 // Create layers and add to stage
 const layers = [
@@ -53,9 +52,6 @@ const layers = [
 layers.forEach(function (layer) {
   stage.add(layer);
 });
-
-$('.konvajs-content').css('width', '100%');
-$('canvas').css('width', '100%');
 
 // Generate color palette
 const backgroundColors = [
@@ -145,9 +141,8 @@ function resetStage(event) {
   stage.clear();
   layers.forEach(function (layer) {
     layer.removeChildren();
-    $('#canvas').css('background-color', '#fafffa');
   });
-  layer.draw();
+  targetLayer.draw();
 }
 
 function addResizeAnchors(event) {
@@ -163,8 +158,6 @@ function addImageToCanvas(source, targetLayer) {
 
   imageObj.onload = function () {
     let image = new Konva.Image({
-      x: 150,
-      y: 50,
       image: imageObj,
     });
 
