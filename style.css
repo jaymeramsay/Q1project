@@ -140,3 +140,7 @@ body {
   margin-top: 13px;
   padding-left: 10px;
 }
+
+canvas {
+  border: 4px solid green;
+}

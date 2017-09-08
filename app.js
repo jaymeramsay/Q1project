@@ -6,7 +6,7 @@ let sectionImages = {
     'assets/humanModelPic.png',
     'assets/robot.png',
     'assets/chicken.png',
-    'assets/zubairowl.png',
+    'assets/zubairOwl.png',
   ],
   accessories: [
     'assets/bowtie.png',
@@ -37,9 +37,10 @@ let sectionImages = {
 // Add stage to page
 const stage = new Konva.Stage({
   container: 'canvas',
-  width: 1400,
-  height: 500
+  width: 700,
+  height: 700,
 });
+
 
 // Create layers and add to stage
 const layers = [
@@ -52,6 +53,9 @@ const layers = [
 layers.forEach(function (layer) {
   stage.add(layer);
 });
+
+$('.konvajs-content').css('width', '100%');
+$('canvas').css('width', '100%');
 
 // Generate color palette
 const backgroundColors = [
