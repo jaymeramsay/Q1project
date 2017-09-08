@@ -146,7 +146,6 @@ function resetStage(event) {
 }
 
 function addResizeAnchors(event) {
-  console.log('IM CLICKING THE RESIZE BUTTON');
   addResizeAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.y(), "topLeft");
   addResizeAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.y(), "topRight");
   addResizeAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomRight");
@@ -177,14 +176,27 @@ function addImageToCanvas(source, targetLayer) {
 
     // Remove image group from canvas with a click event
     myGroup.on('click', function (event) {
-      event.target.remove(); // TBD: This removes the group, anchors and image!
-      //      Fix to only remove anchors
+
+      let myChildren = event.target.getParent().getChildren();
+      console.log(myChildren);
+      if (myChildren.length > 1) {
+        for (let i = myChildren.length - 1; i >= 0; i--) {
+          if (myChildren[i].className === 'Circle') {
+            myChildren[i].remove();
+          }
+        }
+      }
+      else {
+        event.target.remove();
+      }
       targetLayer.draw();
     });
   };
 
   imageObj.src = source;
 }
+
+// TBD: only add resize anchors once - don't add if they're already there; alternately, disable the button when clicked
 
 function addResizeAnchor(group, x, y, name) {
   const anchorLayer = group.getLayer();
