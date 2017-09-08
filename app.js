@@ -1,25 +1,60 @@
-// SETTING UP KONVA LIBRARY FOR CANVAS
-//setting the Stage
-let stage = new Konva.Stage({
+// Global Variables
+
+let lastAddedGroup;
+let sectionImages = {
+  templates: [
+    'assets/humanModelPic.png',
+    'assets/robot.png',
+    'assets/chicken.png',
+    'assets/zubairowl.png',
+  ],
+  accessories: [
+    'assets/bowtie.png',
+    'assets/glasses.png',
+    'assets/hat.png',
+    'assets/tie.png',
+  ],
+  dresses: [
+    'assets/blueDressPic.png',
+    'assets/red-dress.png',
+    'assets/yellow-dress.png',
+    'http://fillmurray.com/150/185',
+  ],
+  tops: [
+    'assets/shirt.png',
+    'assets/tshirt.png',
+    'http://fillmurray.com/150/153',
+    'http://fillmurray.com/150/206',
+  ],
+  bottoms: [
+    'assets/jeans.png',
+    'assets/slacks.png',
+    'http://fillmurray.com/150/111',
+    'http://fillmurray.com/150/109',
+  ]
+};
+
+// Add stage to page
+const stage = new Konva.Stage({
   container: 'canvas',
-  width: 700,
-  height: 700
+  width: 1400,
+  height: 500
 });
 
-
-let layers = [
-  new Konva.Layer(),
-  new Konva.Layer(),
-  new Konva.Layer(),
-  new Konva.Layer(),
+// Create layers and add to stage
+const layers = [
+  new Konva.Layer(), // Backgrounds
+  new Konva.Layer(), // Clothes
+  new Konva.Layer(), // Accessories
+  new Konva.Layer(), // Text?
 ];
 
 layers.forEach(function (layer) {
   stage.add(layer);
 });
 
-//Background Colors
-const colors = [
+// Generate color palette
+const backgroundColors = [
   '#ad2105',
   '#ff0000',
   '#ff5900',
@@ -52,59 +87,73 @@ const colors = [
   '#030303',
 ];
 
-// Global Variables
-let lastAddedGroup;
+const navBar = document.getElementById('navBar');
 
-
-// IMAGE OBJECT
-let sectionImageObj = {
-  templates: [
-    'assets/humanModelPic.png',
-    'assets/robot.png',
-    'assets/chicken.png',
-    'http://fillmurray.com/150/192',
-  ],
-  accessories: [
-    'assets/bowtie.png',
-    'assets/glasses.png',
-    'assets/hat.png',
-    'assets/tie.png',
-  ],
-  dresses: [
-    'assets/blueDressPic.png',
-    'assets/red-dress.png',
-    'assets/yellow-dress.png',
-    'http://fillmurray.com/150/185',
-  ],
-  tops: [
-    'assets/shirt.png',
-    'assets/tshirt.png',
-    'http://fillmurray.com/150/153',
-    'http://fillmurray.com/150/206',
-  ],
-  bottoms: [
-    'assets/jeans.png',
-    'assets/slacks.png',
-    'http://fillmurray.com/150/111',
-    'http://fillmurray.com/150/109',
-  ]
-};
-
-
-
-
-
-
-// put a click event on image buttons in sidebar
-function imageClick(element, targetLayer) {
-  $(element).on('click', function (ev) {
-    let imgButton = ev.target;
-    imageToCanvas(imgButton.src, targetLayer); //calling another function
-  });
+for (let i = 0; i < backgroundColors.length; i++) {
+  const square = document.createElement('div');
+  square.className = 'square';
+  square.style.backgroundColor = backgroundColors[i];
+  navBar.appendChild(square);
 }
 
-//accessing images sources in function
-function imageToCanvas(source, targetLayer) {
+// Set up UI buttons
+$('.square').on('click', changeBackgroundColor);
+$('#resizeButton').on('click', addResizeAnchors);
+$('#resetButton').on('click', resetStage);
+
+// Create sections with clickable images
+Object.keys(sectionImages).forEach(function (section) {
+  let menuSection = document.querySelector(`#${section} .card`);
+
+  // Add clickable images to section
+  sectionImages[section].forEach(function (imageURL) {
+    let imageElement = document.createElement('img');
+    imageElement.src = imageURL;
+    $(imageElement).addClass("imageSelector");
+
+    // Attach image to section div
+    menuSection.appendChild(imageElement);
+
+    let targetLayer;
+    if (section === "templates") {
+      targetLayer = layers[0]; // Backgrounds
+    }
+    else if (section === "accessories") {
+      targetLayer = layers[2]; // Accessories
+    }
+    else {
+      targetLayer = layers[1]; // Clothes
+    }
+
+    $(imageElement).on('click', function (event) {
+      addImageToCanvas(event.target.src, targetLayer);
+    });
+  });
+});
+
+// Helper functions
+
+function changeBackgroundColor(event) {
+  $('#canvas').css('background-color', event.target.style.backgroundColor);
+}
+
+function resetStage(event) {
+  stage.clear();
+  layers.forEach(function (layer) {
+    layer.removeChildren();
+  });
+  targetLayer.draw();
+}
+
+function addResizeAnchors(event) {
+  addResizeAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.y(), "topLeft");
+  addResizeAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.y(), "topRight");
+  addResizeAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomRight");
+  addResizeAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomLeft");
+  lastAddedGroup.draw();
+}
+
+function addImageToCanvas(source, targetLayer) {
   let imageObj = new Image();
 
   imageObj.onload = function () {
@@ -112,7 +161,6 @@ function imageToCanvas(source, targetLayer) {
       image: imageObj,
     });
 
-    //create a konva group and add images to it as well as layers
     let myGroup = new Konva.Group({
       x: image.x(),
       y: image.y(),
@@ -120,46 +168,89 @@ function imageToCanvas(source, targetLayer) {
       height: image.height(),
       draggable: true
     });
+    lastAddedGroup = myGroup; // keep track of last image added
 
-    lastAddedGroup = myGroup;
     myGroup.add(image);
-    console.log(targetLayer);
-    console.log(typeof targetLayer);
     targetLayer.add(myGroup);
     targetLayer.draw();
 
-    //remove group and image from canvas with a click event
-    myGroup.on('click', function (ev) {
-      ev.target.remove();
+    // Remove image group from canvas with a click event
+    myGroup.on('click', function (event) {
+
+      let myChildren = event.target.getParent().getChildren();
+      console.log(myChildren);
+      if (myChildren.length > 1) {
+        for (let i = myChildren.length - 1; i >= 0; i--) {
+          if (myChildren[i].className === 'Circle') {
+            myChildren[i].remove();
+          }
+        }
+      }
+      else {
+        event.target.remove();
+      }
       targetLayer.draw();
     });
   };
+
   imageObj.src = source;
 }
 
+// TBD: only add resize anchors once - don't add if they're already there; alternately, disable the button when clicked
 
-//  SWITCH CANVAS COLORS FUNCTION
-function squareClicker(square) {
-  $('.square').on('click', function (ev) {
-    $("#canvas").css('background-color', ev.target.style.backgroundColor);
+function addResizeAnchor(group, x, y, name) {
+  const anchorLayer = group.getLayer();
+  const anchor = new Konva.Circle({
+    x: x,
+    y: y,
+    stroke: '#666',
+    fill: '#ddd',
+    strokeWidth: 2,
+    radius: 8,
+    name: name,
+    draggable: true,
+    dragOnTop: false
   });
+  group.add(anchor);
+
+  anchor.on('dragmove', function () {
+    resizeImage(this);
+    anchorLayer.draw();
+  });
+  anchor.on('mousedown touchstart', function () {
+    group.setDraggable(false);
+    this.moveToTop();
+  });
+  anchor.on('dragend', function () {
+    group.setDraggable(true);
+    anchorLayer.draw();
+  });
+  // add hover styling
+  anchor.on('mouseover', function () {
+    const anchorLayer = this.getLayer();
+    document.body.style.cursor = 'pointer';
+    this.setStrokeWidth(4);
+    anchorLayer.draw();
+  });
+  anchor.on('mouseout', function () {
+    const anchorLayer = this.getLayer();
+    document.body.style.cursor = 'default';
+    this.setStrokeWidth(2);
+    anchorLayer.draw();
+  });
+  return anchor;
 }
 
+function resizeImage(activeAnchor) {
+  const group = activeAnchor.getParent();
+  const topLeft = group.get('.topLeft')[0];
+  const topRight = group.get('.topRight')[0];
+  const bottomRight = group.get('.bottomRight')[0];
+  const bottomLeft = group.get('.bottomLeft')[0];
+  const image = group.get('Image')[0];
+  const anchorX = activeAnchor.getX();
+  const anchorY = activeAnchor.getY();
 
-
-//
-// RESize BUTTON SEQUENCE OF FUNCTIONS
-//
-// set up active anchors for the photos
-function update(activeAnchor) {
-  let group = activeAnchor.getParent();
-  let topLeft = group.get('.topLeft')[0];
-  let topRight = group.get('.topRight')[0];
-  let bottomRight = group.get('.bottomRight')[0];
-  let bottomLeft = group.get('.bottomLeft')[0];
-  let image = group.get('Image')[0];
-  let anchorX = activeAnchor.getX();
-  let anchorY = activeAnchor.getY();
   // update anchor positions
   switch (activeAnchor.getName()) {
   case 'topLeft':
@@ -187,115 +278,4 @@ function update(activeAnchor) {
     image.width(width);
     image.height(height);
   }
-}
-
-
-//create and add resize anchors
-function addAnchor(group, x, y, name) {
-  let stage = group.getStage();
-  let targetLayer = group.getLayer();
-  let anchor = new Konva.Circle({
-    x: x,
-    y: y,
-    stroke: '#666',
-    fill: '#ddd',
-    strokeWidth: 2,
-    radius: 8,
-    name: name,
-    draggable: true,
-    dragOnTop: false
-  });
-  anchor.on('dragmove', function () {
-    update(this);
-    targetLayer.draw();
-  });
-  anchor.on('mousedown touchstart', function () {
-    group.setDraggable(false);
-    this.moveToTop();
-  });
-  anchor.on('dragend', function () {
-    group.setDraggable(true);
-    targetLayer.draw();
-  });
-  // add hover styling
-  anchor.on('mouseover', function () {
-    let targetLayer = this.getLayer();
-    document.body.style.cursor = 'pointer';
-    this.setStrokeWidth(4);
-    targetLayer.draw();
-  });
-  anchor.on('mouseout', function () {
-    let targetLayer = this.getLayer();
-    document.body.style.cursor = 'default';
-    this.setStrokeWidth(2);
-    targetLayer.draw();
-  });
-  group.add(anchor);
-}
-
-let targetLayer = new Konva.Layer();
-stage.add(targetLayer);
-
-
-//RESIZE BUTTON CLICK EVENT
-let onClick = false;
-$('#resizeButton').on('click', function (ev) {
-  onclick = true;
-  console.log('IM CLICKING THE RESIZE BUTTON');
-  addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.y(), "topLeft");
-  addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.y(), "topRight");
-  addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomRight");
-  addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomLeft");
-  lastAddedGroup.draw();
-});
-
-// if (!onClick) {
-//   addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.y(), "topLeft").remove();
-//   addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.y(), "topRight").remove();
-//   addAnchor(lastAddedGroup, lastAddedGroup.width() + lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomRight").remove();
-//   addAnchor(lastAddedGroup, lastAddedGroup.x(), lastAddedGroup.height() + lastAddedGroup.y(), "bottomLeft").remove();
-//   lastAddedGroup.draw();
-// }
-
-$('#resetButton').on('click', function (ev) {
-  stage.clear();
-  layers.forEach(function (layer) {
-    layer.removeChildren();
-  });
-  targetLayer.draw();
-});
-
-
-//Create a nested forEach to generate img tags for imgObj[keys]
-Object.keys(sectionImageObj).forEach(function (section) {
-  let imageSelector = document.querySelector(`#${section} .card`);
-
-  sectionImageObj[section].forEach(function (value) {
-    //   // create img html element with src = value
-    let imageElement = document.createElement('img');
-    imageElement.src = value; //set image urls to the values in sectionImageObj
-    $(imageElement).addClass("imageSelector");
-    // attach image to section div
-    imageSelector.appendChild(imageElement);
-    let targetLayer = layers[1];
-    if (section === "templates") {
-      targetLayer = layers[0];
-    }
-    else if (section === "accessories") {
-      targetLayer = layers[2];
-    }
-    imageClick(imageElement, targetLayer); //here, I'm invoking my imageClick function
-  });
-});
-
-
-
-//generate color palette
-let navBar = document.getElementById('navBar');
-for (let i = 0; i < colors.length; i++) {
-  let square = document.createElement('div');
-  square.className = 'square';
-  square.style.backgroundColor = colors[i];
-  navBar.appendChild(square);
-  squareClicker();
 }
