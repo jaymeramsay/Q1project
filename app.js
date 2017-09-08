@@ -37,8 +37,8 @@ let sectionImages = {
 // Add stage to page
 const stage = new Konva.Stage({
   container: 'canvas',
-  width: 700,
-  height: 500
+  width: 800,
+  height: 700
 });
 
 // Create layers and add to stage
@@ -141,6 +141,7 @@ function resetStage(event) {
   stage.clear();
   layers.forEach(function (layer) {
     layer.removeChildren();
+    $('#canvas').css('background-color', '#fafffa', )
   });
   targetLayer.draw();
 }
@@ -158,6 +159,8 @@ function addImageToCanvas(source, targetLayer) {
 
   imageObj.onload = function () {
     let image = new Konva.Image({
+      x: 55,
+      y: 5,
       image: imageObj,
     });
 
