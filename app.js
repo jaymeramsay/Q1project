@@ -146,7 +146,7 @@ function resetStage(event) {
   layers.forEach(function (layer) {
     layer.removeChildren();
   });
-  targetLayer.draw();
+  layer.draw();
 }
 
 function addResizeAnchors(event) {

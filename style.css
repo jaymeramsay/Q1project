@@ -12,7 +12,7 @@ body {
 }
 
 #title {
-  font-size: 100px;
+  font-size: 130px;
   color: gold;
   font-family:'Covered By Your Grace', cursive;
 
@@ -25,7 +25,7 @@ body {
   width: 525px;
   height: 600px;
   background-color: black;
-  margin-top: 13px;
+  margin-top: 75px;
   float: right;
 }
 
@@ -97,6 +97,7 @@ body {
   /*width: 400px;
   height: 75px;*/
   margin: 10px;
+  /*margin-right: 10px;*/
 }
 
 .square {
@@ -113,12 +114,13 @@ body {
 }
 
 #buttonBar {
-  margin-left: 100px;
+  margin: 10px;
+  margin-left: 75px;
 }
 
 #resizeButton {
   border-radius: 0;
-  background-color: deeppink;
+  background-color: teal;
 }
 
 #resetButton {
@@ -128,16 +130,16 @@ body {
 
 #rotateButton {
   border-radius: 0;
-  background-color: deeppink;
+  background-color: teal;
 }
 /*CANVAS*/
 
 #canvas {
   background-color: white;
-  width: 700px;
+  width: 900px;
   height: 700px;
   float: left;
-  margin-top: 13px;
+  margin-top: 20px;
   padding-left: 10px;
 }
 
