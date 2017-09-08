@@ -3,32 +3,32 @@
 let lastAddedGroup;
 let sectionImages = {
   templates: [
-    'assets/humanModelPic.png',
-    'assets/robot.png',
-    'assets/chicken.png',
+    'assets/humanModel.png',
+    'assets/robot2.png',
+    'assets/chicken2.png',
     'assets/zubairOwl.png',
   ],
   accessories: [
-    'assets/bowtie.png',
-    'assets/glasses.png',
-    'assets/hat.png',
-    'assets/tie.png',
+    'assets/bowtie2.png',
+    'assets/glasses2.png',
+    'assets/cowboyhat.png',
+    'assets/tie2.png',
   ],
   dresses: [
-    'assets/blueDressPic.png',
-    'assets/red-dress.png',
-    'assets/yellow-dress.png',
+    'assets/blueDressPic2.png',
+    'assets/red-dress2.png',
+    'assets/yellow-dress2.png',
     'http://fillmurray.com/150/185',
   ],
   tops: [
-    'assets/shirt.png',
-    'assets/tshirt.png',
+    'assets/shirt2.png',
+    'assets/tshirt2.png',
     'http://fillmurray.com/150/153',
     'http://fillmurray.com/150/206',
   ],
   bottoms: [
-    'assets/jeans.png',
-    'assets/slacks.png',
+    'assets/jeans2.png',
+    'assets/slacks2.png',
     'http://fillmurray.com/150/111',
     'http://fillmurray.com/150/109',
   ]
@@ -145,6 +145,7 @@ function resetStage(event) {
   stage.clear();
   layers.forEach(function (layer) {
     layer.removeChildren();
+    $('#canvas').css('background-color', '#fafffa');
   });
   layer.draw();
 }
@@ -162,6 +163,8 @@ function addImageToCanvas(source, targetLayer) {
 
   imageObj.onload = function () {
     let image = new Konva.Image({
+      x: 150,
+      y: 50,
       image: imageObj,
     });
 
