@@ -18,6 +18,8 @@ Put Clothes on Things is a front-end application that allows users to dress vari
 3. Resize your image
 ![robotdemo](./assets/robotdemo.png)
 
+4. Email your artwork to your friends!
+
 ## Technologies
 
 * Javascript
