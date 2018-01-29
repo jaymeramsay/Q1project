@@ -14,15 +14,19 @@ Put Clothes on Things is a front-end application that allows users to dress vari
 
 2. Render Clothing and Accessories
 ![chickenclothesdemo](./assets/chickenclothesdemo.png)
+<br>
 
 3. Resize your image
 ![resizedemo](./assets/resizedemo.png)
+<br>
 
 4. Change your background
 ![robotdemo](./assets/robotdemo.png)
+<br>
 
 4. Email your artwork to your friends!
 ![emaildemo](./assets/emaildemo.png)
+<br>
 
 ## Technologies
 
@@ -32,6 +36,7 @@ Put Clothes on Things is a front-end application that allows users to dress vari
 * HTML5 Canvas
 * **[Konva.js](https://konvajs.github.io)** - Canvas library
 * **[Bootstrap](https://getbootstrap.com/)** - styling agent
+<br>
 
 ## Challenges
 
@@ -40,7 +45,8 @@ Put Clothes on Things is a front-end application that allows users to dress vari
 * Finding the right image API. I could only find image APIs that stored images, not provided images for use. Instead, I drew all of the images myself.
 
 * Refactoring the logic for resizing so it was more dynamic. This was a great experience in learning high-order and single responsibility functions. There were many details to keep track of!
+<br>
 
 
 ### Wanna send some art to your friends?
-Check out the app [here](https://jaymeramsay.github.io/Q1project/)
+Check out the app [here](https://jaymeramsay.github.io/Q1project/)!
